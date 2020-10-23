@@ -356,10 +356,10 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let i = 0; i < currencyWithCountryCodeAndFlag.length; i++) {
     let option = document.createElement("option");
     option.setAttribute("value", currencyWithCountryCodeAndFlag[i].countryCode);
-    option.innerText =
-      currencyWithCountryCodeAndFlag[i].countryName +
+    option.innerHTML =
+      currencyWithCountryCodeAndFlag[i].currencyCode +
       " - " +
-      currencyWithCountryCodeAndFlag[i].currencyCode;
+      currencyWithCountryCodeAndFlag[i].countryName;
 
     if (currencyWithCountryCodeAndFlag[i].countryCode === "US") {
       option.selected = true;
@@ -373,9 +373,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     optionTwo.innerText =
-      currencyWithCountryCodeAndFlag[i].countryName +
+      currencyWithCountryCodeAndFlag[i].currencyCode +
       " - " +
-      currencyWithCountryCodeAndFlag[i].currencyCode;
+      currencyWithCountryCodeAndFlag[i].countryName;
 
     if (currencyWithCountryCodeAndFlag[i].countryCode === "GB") {
       optionTwo.selected = true;
@@ -383,4 +383,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
     countrySelectTwo.appendChild(optionTwo);
   }
+
+  const currencyListOne = document.getElementById("currency-list-one");
+  const amountOne = document.getElementById("amount-one");
+  const currencyListTwo = document.getElementById("currency-list-two");
+
+  const rateElem = document.getElementById("rate");
+  const swap = document.getElementById("swap");
+
+  currencyListOne.addEventListener("change", () => {
+    calculate();
+    getFlag();
+  });
+  amountOne.addEventListener("input", calculate);
+  currencyListTwo.addEventListener("change", () => {
+    calculate();
+    getFlag();
+  });
+
+  calculate();
+
+  function calculate() {
+    let currency_one =
+      currencyListOne.options[currencyListOne.selectedIndex].text;
+    let currency_two =
+      currencyListTwo.options[currencyListTwo.selectedIndex].text;
+
+    currency_one = currency_one.slice(0, 3);
+    currency_two = currency_two.slice(0, 3);
+
+    fetch(`https://api.exchangerate-api.com/v4/latest/${currency_one}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const rate = data.rates[currency_two];
+        rateElem.innerText = `1 ${currency_one} = ${rate} ${currency_two}`;
+      });
+  }
+
+  function getFlag() {
+    const flagOne = document.getElementById("flagOne");
+    let countrySelectOneValue = countrySelectOne.value;
+    flagOne.src = `https://www.countryflags.io/${countrySelectOneValue}/shiny/64.png`;
+
+    const flagTwo = document.getElementById("flagTwo");
+    let countrySelectTwoValue = countrySelectTwo.value;
+    flagTwo.src = `https://www.countryflags.io/${countrySelectTwoValue}/shiny/64.png`;
+  }
+
+  swap.addEventListener("click", () => {
+    const tempVar = currencyListOne.value;
+    currencyListOne.value = currencyListTwo.value;
+    currencyListTwo.value = tempVar;
+    calculate();
+  });
 });
