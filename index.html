@@ -13,39 +13,35 @@
     <title>World Currency Converter</title>
   </head>
   <body>
+    <h1>World Currency Exchange Converter</h1>
+    <br />
     <div id="icons">🌎🤑🌎</div>
-    <h1>World Currency Converter</h1>
-    <!-- <p>Choose the currency and the amounts to get the exchange rate</p> -->
 
-    <div class="container">
-      <div>
-        <img id="flagOne" src="https://www.countryflags.io/US/shiny/64.png" />
-        <div id="currency-wrapper-one" class="currency">
-          <input type="number" id="amount-one" placeholder="0" value="1" />
-          <select id="currency-list-one"></select>
-          <input type="hidden" id="currency-country-one" value="US" />
-        </div>
-      </div>
-
+    <div class="flag-wrapper">
+      <img id="flagOne" src="https://www.countryflags.io/US/shiny/64.png" />
+      <input type="number" id="amount-one" placeholder="0" value="1" />
       <div class="swap-rate-container">
         <button class="btn" id="swap">
           <i class="fas fa-exchange-alt"></i>
         </button>
       </div>
-
-      <div>
-        <img id="flagTwo" src="https://www.countryflags.io/GB/shiny/64.png" />
-        <div id="currency-wrapper-two" class="currency">
-          <select id="currency-list-two"></select>
-          <input type="hidden" id="currency-country-one" value="GB" />
-        </div>
-      </div>
-
-      <div id="rate"></div>
+      <input type="number" id="amount-two" placeholder="0" value="" />
+      <img id="flagTwo" src="https://www.countryflags.io/GB/shiny/64.png" />
     </div>
+
+    <div class="currency-list-wrapper">
+      <div id="currency-wrapper-one" class="currency">
+        <select id="currency-list-one"></select>
+        <input type="hidden" id="currency-country-one" value="US" />
+      </div>
+      <div id="currency-wrapper-two" class="currency">
+        <select id="currency-list-two"></select>
+        <input type="hidden" id="currency-country-one" value="GB" />
+      </div>
+    </div>
+
+    <div id="rate"></div>
 
     <script src="index.js"></script>
   </body>
 </html>
-
-<!-- <img src="https://www.countryflags.io/be/shiny/32.png" /> -->
