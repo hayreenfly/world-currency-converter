@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
   const currencyWithCountryCodeAndFlag = [
     {
+      countryCode: 'EU',
+      currencyCode: 'EUR',
+      countryName: 'European Union',
+    },
+    {
       countryCode: 'BG',
       currencyCode: 'BGN',
       countryName: 'Bulgaria',
@@ -377,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ' - ' +
       currencyWithCountryCodeAndFlag[i].countryName;
 
-    if (currencyWithCountryCodeAndFlag[i].countryCode === 'GB') {
+    if (currencyWithCountryCodeAndFlag[i].countryCode === 'EU') {
       optionTwo.selected = true;
     }
 

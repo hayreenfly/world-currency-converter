@@ -111,13 +111,24 @@ button:focus {
   outline: 0;
 }
 
+@media (max-width: 900px) {
+  #currency-wrapper-one {
+    padding-top: 50px;
+    padding-bottom: 0px;
+  }
+
+  #currency-wrapper-two {
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+  .currency-list-wrapper {
+    display: inline;
+  }
+}
+
 @media (max-width: 768px) {
   #rate {
     margin-top: 30px;
-  }
-
-  .currency-list-wrapper {
-    display: flex;
   }
 
   .currency {
@@ -178,7 +189,7 @@ button:focus {
   .flag-wrapper {
     display: grid;
     grid-auto-flow: column;
-    grid-column-gap: 20px;
+    grid-column-gap: 10px;
   }
 
   .flag-wrapper input {
